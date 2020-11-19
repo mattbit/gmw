@@ -109,13 +109,8 @@ class MorseWavelet:
         f_sig = fft.fft(signal, n=fast_len)
 
         # Compute the wavelet transform
-        W = np.zeros((scales.size, n), dtype=complex)
-        for i, scale in enumerate(scales):
-            # Average over orthogonal wavelets, k = 0, …, num_k - 1
-            # for k in range(num_k):
-            # Do the convolution for each scale in the frequency domain,
-            # then invert the FFT to get the wavelet transform.
-            W[i] = fft.ifft(f_sig * self.psi_f(fs, scale), n=n)
+        psi = np.array([self.psi_f(fs, scale) for scale in scales])
+        W = fft.ifft(f_sig * psi, n=n, workers=-1)
 
         freqs = self.central_freq(scales)
 
