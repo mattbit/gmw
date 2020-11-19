@@ -4,11 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-ipykernel = "*"
-python-language-server = {extras = ["all"],version = "*"}
 pytest = "*"
+flake8 = "*"
 
 [packages]
 scipy = "*"
 numpy = "*"
-
