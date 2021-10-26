@@ -110,7 +110,7 @@ class MorseWavelet:
 
         # Compute the wavelet transform
         psi = np.array([self.psi_f(fs, scale) for scale in scales])
-        W = fft.ifft(f_sig * psi, n=n, workers=-1)
+        W = fft.ifft(f_sig * psi, workers=-1)[..., :n]
 
         freqs = self.central_freq(scales)
 
